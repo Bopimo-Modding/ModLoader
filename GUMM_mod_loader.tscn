@@ -1,0 +1,214 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdmfy6r6ayvyf"]
+
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Node
+var arguments : Dictionary = {}
+
+var level_id: Variant = null
+
+var loaded_mods = []
+
+func parse_command_line_arguments() -> void:
+	print(OS.get_cmdline_args())
+	for argument in OS.get_cmdline_args():
+		if argument.find(\"=\") > -1:
+			var key_value: PackedStringArray = argument.split(\"=\")
+			arguments[key_value[0].lstrip(\"--\")] = key_value[1]
+		else:
+		# Options without an argument will be present in the dictionary,
+		# with the value set to an empty string.
+			arguments[argument.lstrip(\"--\")] = \"\"
+		
+		if argument.contains(\"banned\"):
+			arguments[\"banned\"] = null; return
+
+		
+
+		#if argument.begins_with(\"bopimo://\") or argument.begins_with(\"bopimo-staging://\") or argument.begins_with(\"bopimo.staging://\")or argument.begins_with(\"bopimostaging://\"):
+			#
+			#var split: PackedStringArray = (argument.replace(\"bopimo://\",\"\").replace(\"bopimo-staging://\",\"\").replace(\"bopimo.staging://\",\"\").replace(\"bopimostaging://\",\"\")).split(\";\")
+			#if split.size() == 4:
+				#OS.alert(\"USE Play (New) NOT Play (Old)\\nIF IT DOESNT WORK\\n\\n\\n\\n\\n\\n\\n\\nidk\\n\\nThe input:\\n\" +argument, \"💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\")
+			#elif split.size() == 2:
+				#arguments[\"server_ip\"] = split[0]
+				#arguments[\"auth_token\"] = split[1]
+
+		#// Parses launcher-passed arguments.
+		if (argument.contains(\"://\")):# {
+			#PackedStringArray split = argument.get_slice(\"://\", 1u).split(\";\");
+			var split: PackedStringArray = argument.get_slice(\"://\", 1).split(\";\")
+			if (split.size() == 2):# { // Should have 2 args - Server IP & Auth Token.
+				arguments[\"server_ip\"] = split[0];
+				arguments[\"authentication_token\"] = split[1];
+			#}
+		#}
+
+			#arguments[\"user_id\"] = int(split[0])
+			#arguments[\"level_id\"] = int(split[1])
+			#arguments[\"server_ip\"] = split[2]
+			#arguments[\"auth_token\"] = split[3]
+
+	
+	print_rich(\"[color=yellow]%s[/color]\"%[str(arguments)])
+
+enum START_MODES {
+	SINGLEPLAYER,
+	SINGLEPLAYER_WITH_FILE,
+	SERVER_MANAGER_COMMUNICATION,
+	DIRECT_SERVER_ENTRY
+}
+
+
+func _ready() -> void:
+	print(OS.get_executable_path())
+	print_rich(\"[color=magenta]Process ID: [/color][color=blue]%s[/color]\" % str(OS.get_process_id()))
+	
+	parse_command_line_arguments()
+	print(\"Starting Mod Loader...\")
+	#(load(\"res://GUMM/System/GUMM_mod_loader.gd\") as Script).enter()
+	#Bopimo.add_child((load(\"res://GUMM/System/GUMM_mod_loader.tscn\") as PackedScene).instantiate())
+	#MOD LOADER
+	var mod_list = GetModConfig()
+	print(mod_list)
+	for mod in mod_list:
+		load_mod(mod)
+	
+	get_tree().set_meta(\"GUMM_mods\", loaded_mods)
+
+	# Arguments that aren't specific to client or server
+	for arg in arguments.keys():
+		match arg:
+			#\"link_prefix\":
+				#Bopimo.LINK_PREFIX = arguments[arg]
+			\"port\":
+				Network.network_port = arguments[arg]
+			\"level_id\":
+				level_id = int(arguments[arg])
+
+			\"dummy\":
+				Bopimo.add_child((load(\"res://Client/Scenes/dummy.tscn\") as PackedScene).instantiate())
+			\"api_endpoint\":
+				Bopimo.API_ENDPOINT = arguments[arg]
+			\"delay\": # debugging thing
+				await(get_tree().create_timer(float(arguments[arg])).timeout)
+
+# Server-specific arguments
+	if ProjectSettings.get_setting_with_override(\"bopimo/server\"):
+			print_rich(\"[color=yellow]LOADING AS SERVER[/color]\")
+			for arg in arguments.keys():
+				match arg:
+					\"allow_duplicate_players\":
+						Network.loader.allow_duplicate_players = true
+					\"disable_require_matching_version\":
+						Network.loader.require_matching_version = false
+					\"disable_server_manager\":
+						Network.loader.require_server_manager = false
+
+			print_rich(\"[color=blue]Starting with level id: [/color][color=green]%s[/color]\" % [str(level_id)])
+			# creates the connection here now
+			if Network.loader.require_server_manager != false:
+				var server_manager_connection: NetworkConnectionServerManagerServer = NetworkConnectionServerManagerServer.new()
+				Bopimo.set_meta(&\"server_manager_connection\", server_manager_connection)
+				Bopimo.add_child(server_manager_connection)
+				#stupid
+				
+				server_manager_connection.user_achievements_created.connect(Network.loader.user_achievements_created)
+
+				server_manager_connection.kick_player.connect(Network.loader.kick_player_id)
+				server_manager_connection.user_banned.connect(Network.loader.player_banned2)
+				server_manager_connection.authentication_success.connect(func(): Network.loader.server_manager_authentication=true)
+				server_manager_connection.connect_to_server_manager(\"127.0.0.1\", 1024)
+			Network.loader.host_server(level_id)
+
+# Client-specific arguments
+	else:
+			print_rich(\"[color=yellow]LOADING AS CLIENT[/color]\")
+			var start_mode : START_MODES = START_MODES.SINGLEPLAYER
+
+			for arg in arguments.keys():
+				# Checks if a bop file is passed as an argument
+				var arg_formatted: String = arg.replacen(\"\\\\\",\"/\")
+				if arg_formatted.is_absolute_path() and Level.get_level_format(arg_formatted) != Level.FILE_FORMATS.INVALID:
+					Bopimo.client.singleplayer_bop_path = arg_formatted
+					start_mode = START_MODES.SINGLEPLAYER_WITH_FILE
+			
+				match arg:
+					\"banned\":
+						Bopimo.client.banned = true
+						Bopimo.client.singleplayer_bop_path = \"res://Client/Resources/Custom/BopFiles/BanPrison.bop\"
+						start_mode = START_MODES.SINGLEPLAYER_WITH_FILE
+					\"server_ip\":
+						Network.network_ip = arguments[arg]
+						if arguments.keys().has(\"disable_server_manager\"):
+							start_mode = START_MODES.DIRECT_SERVER_ENTRY
+						else:
+							#Network.loader.requesting_level = int(level_id)
+							start_mode = START_MODES.SERVER_MANAGER_COMMUNICATION
+					\"auth_token\":
+						Bopimo.client.auth_token = arguments[\"auth_token\"]
+					\"user_id\":
+						Bopimo.client.local_player_info.user_id = int(arguments[\"user_id\"])
+			
+			match start_mode:
+				START_MODES.SINGLEPLAYER:
+					get_tree().change_scene_to_file(\"res://Client/Scenes/Singleplayer/TitleMenu.tscn\")
+				START_MODES.SINGLEPLAYER_WITH_FILE:
+					get_tree().change_scene_to_file(\"res://Client/Scenes/Playfield.tscn\")
+				START_MODES.SERVER_MANAGER_COMMUNICATION:
+					#get_tree().change_scene_to_file(\"res://Client/Scenes/GUI/ServerManagerCommunicationScreen.tscn\")
+					#7/31/2024 copied from 2.0.0
+					(load(\"res://Bopimo/Client/Scripts/GUI/LoadingScreen.gd\") as Script).enter(get_tree(), print.bind(\"TRANSITION TEST\"))#Bopimo.initialize_bopimo)
+	
+		# Creates the server manager connection as metadata, then adds it as a child.
+					Bopimo.set_meta(&\"server_manager_connection\", NetworkConnectionServerManagerClient.new())
+					Bopimo.add_child(Bopimo.get_meta(&\"server_manager_connection\"))
+				START_MODES.DIRECT_SERVER_ENTRY:
+					Network.loader.join_server()
+
+	#await(get_tree().root.ready)
+	# 7/31/2024 theoreitcally this could all work as it did before if it was uncommented
+	# but its too effort to actually remove the mess of code
+	#create_server_manager_communicator()
+
+
+func create_server_manager_communicator() -> void:
+	# Creates the node singleton that will talk to the server manager
+	var new_node: Node = null
+	if ProjectSettings.get_setting_with_override(\"bopimo/server\"):
+		new_node = (load(\"res://Server/Scripts/Singletons/ServerManagerCommunicatorServer.gd\") as GDScript).new()
+	else:
+		new_node = (load(\"res://Client/Scripts/Singleton/ServerManagerCommunicatorClient.gd\") as GDScript).new()
+	new_node.name = &\"ServerManager\"
+	get_tree().root.add_child(new_node)
+	Network.server_manager_communicator = new_node
+
+func load_mod(mod_path: String):
+	var mod_cfg := ConfigFile.new()
+	mod_cfg.load(mod_path.path_join(\"mod.cfg\"))
+	print(\"Loading mod: \", mod_cfg.get_value(\"Godot Mod\", \"name\", \"[unknown]\"))
+	
+	var mod_ref: RefCounted = load(mod_path.path_join(\"mod.gd\")).new()
+	mod_ref.initialize(mod_path, get_tree())
+	loaded_mods.append(mod_ref)
+	
+func GetModConfig() -> PackedStringArray:
+	var PATH : String = \"user://settings/mods_config.JSON\"
+	var new_array : PackedStringArray = []
+	if FileAccess.file_exists(PATH):
+		var new_json : String = FileAccess.get_file_as_string(PATH)
+		var parsed_json : Variant = JSON.parse_string(new_json)
+
+		if parsed_json is Array:
+			for string in parsed_json:
+				new_array.append(string)
+			DebugOld.debug_print(\"Mod config loaded successfully.\", DebugOld.print_channels.WORLD)
+		else:
+			DebugOld.debug_print(\"Could not load mod config: settings/mod_config.JSON is not an Array\", DebugOld.print_channels.WORLD,true)
+	else:
+		DebugOld.debug_print(\"Could not load mod config: settings/mod_config.JSON does not exist\", DebugOld.print_channels.WORLD,true)
+
+	return new_array
+"
+
+[node name="GUMM" type="Node"]
+script = SubResource("1")

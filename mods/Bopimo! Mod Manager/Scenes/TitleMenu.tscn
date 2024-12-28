@@ -1,0 +1,309 @@
+[gd_scene load_steps=13 format=3 uid="uid://gtlu2x8wkjc8"]
+
+[ext_resource type="Script" path="res://Client/Scripts/GUI/Singleplayer/TitleMenu.gd" id="1_7ixex"]
+[ext_resource type="Theme" uid="uid://beuomq0jraf8m" path="res://addons/BopimoTheme/Resources/BopimoTheme.tres" id="2_itea1"]
+[ext_resource type="Texture2D" uid="uid://b70erqmvju2v5" path="res://Client/Assets/Textures/Logo/Logo.png" id="3_0vdm0"]
+[ext_resource type="PackedScene" uid="uid://m3nsigds76w8" path="res://Client/Scenes/Settings/SettingsInterface.tscn" id="5_86bwy"]
+[ext_resource type="Texture2D" uid="uid://dypdp7cqtfocx" path="res://Bopimo/Client/Resources/Imported/Texture/Texture2D/CompressedTexture2D/GUI/Icons.png" id="5_erwug"]
+[ext_resource type="PackedScene" uid="uid://dlasfh5engwnv" path="user://mods/Bopimo! Mod Manager/Scenes/Mods/ModsInterface.tscn" id="5_nrulp"]
+[ext_resource type="Script" path="res://Client/Scripts/GUI/Singleplayer/JoinServerMenu.gd" id="6_1xkiq"]
+[ext_resource type="Texture2D" uid="uid://bibbaa84otgjg" path="res://Client/Assets/Textures/GUI/X.png" id="7_v1oif"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hjxg"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 5.0
+bg_color = Color(0.411765, 0.411765, 0.411765, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 5
+border_color = Color(0.270588, 0.270588, 0.270588, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fm5d5"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 5.0
+bg_color = Color(0.25098, 0.25098, 0.25098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.14902, 0.14902, 0.14902, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64bur"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 5.0
+bg_color = Color(0.368627, 0.368627, 0.368627, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 5
+border_color = Color(0.239216, 0.239216, 0.239216, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttuil"]
+atlas = ExtResource("5_erwug")
+region = Rect2(322, 34, 28, 28)
+margin = Rect2(2, 2, 4, 4)
+
+[node name="TitleMenu" type="Node3D"]
+script = ExtResource("1_7ixex")
+bop_file_path = "res://Client/Resources/Custom/BopFiles/Bases/WinterTower/WinterTower.bopjson"
+
+[node name="CamPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+
+[node name="TitleCam" type="Camera3D" parent="CamPivot"]
+transform = Transform3D(-4.37114e-08, -0.243615, 0.969872, 0, 0.969872, 0.243615, -1, 1.06488e-08, -4.23945e-08, 0, 5, 0)
+current = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_itea1")
+
+[node name="BoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -351.0
+offset_top = -242.0
+offset_right = 351.0
+offset_bottom = 242.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 22
+
+[node name="Logo" type="TextureRect" parent="UI/BoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_0vdm0")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="PlaySingleplayer" type="Button" parent="UI/BoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Play Offline"
+
+[node name="Tutorial" type="Button" parent="UI/BoxContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Tutorial"
+
+[node name="Settings" type="Button" parent="UI/BoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Settings"
+
+[node name="Mods" type="Button" parent="UI/BoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Mods"
+
+[node name="Exit" type="Button" parent="UI/BoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Exit"
+
+[node name="Version" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -243.0
+offset_top = 16.0
+offset_right = -10.0
+offset_bottom = 38.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+text = "Version"
+horizontal_alignment = 2
+
+[node name="BuildInfo" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -243.0
+offset_top = 38.0
+offset_right = -10.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+text = "Time"
+horizontal_alignment = 2
+
+[node name="Godot" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 12.0
+offset_right = 52.0
+offset_bottom = 34.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+text = "Godot"
+
+[node name="SettingsInterface" parent="UI" instance=ExtResource("5_86bwy")]
+visible = false
+
+[node name="ModsInterface" parent="UI" instance=ExtResource("5_nrulp")]
+visible = false
+
+[node name="ServerButton" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -47.0
+offset_right = 45.0
+offset_bottom = -15.0
+grow_vertical = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_1hjxg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fm5d5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_64bur")
+
+[node name="TextureRect" type="TextureRect" parent="UI/ServerButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ttuil")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="JoinServerMenu" type="Panel" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.0
+offset_top = -107.0
+offset_right = 266.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_1xkiq")
+
+[node name="Close" type="TextureButton" parent="UI/JoinServerMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 22.0
+grow_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_v1oif")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/JoinServerMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = -24.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="EnterIP" type="LineEdit" parent="UI/JoinServerMenu/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Server Ip"
+
+[node name="EnterServerPort" type="LineEdit" parent="UI/JoinServerMenu/VBoxContainer"]
+layout_mode = 2
+text = "21517"
+placeholder_text = "Enter Server Port"
+
+[node name="HSeparator" type="HSeparator" parent="UI/JoinServerMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UserID" type="LineEdit" parent="UI/JoinServerMenu/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "User ID"
+
+[node name="HSeparator2" type="HSeparator" parent="UI/JoinServerMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="JoinServer" type="Button" parent="UI/JoinServerMenu/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Join"
+
+[connection signal="pressed" from="UI/BoxContainer/PlaySingleplayer" to="." method="_on_play_singleplayer_pressed"]
+[connection signal="pressed" from="UI/BoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="UI/BoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="UI/BoxContainer/Mods" to="." method="_on_mods_pressed"]
+[connection signal="pressed" from="UI/BoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="UI/ServerButton" to="." method="_on_server_button_pressed"]
+[connection signal="pressed" from="UI/JoinServerMenu/Close" to="." method="_on_close_pressed"]
+[connection signal="text_changed" from="UI/JoinServerMenu/VBoxContainer/EnterIP" to="UI/JoinServerMenu" method="_on_enter_ip_text_changed"]
+[connection signal="text_changed" from="UI/JoinServerMenu/VBoxContainer/EnterServerPort" to="UI/JoinServerMenu" method="_on_enter_server_port_text_changed"]
+[connection signal="text_changed" from="UI/JoinServerMenu/VBoxContainer/UserID" to="UI/JoinServerMenu" method="_on_user_id_text_changed"]
+[connection signal="pressed" from="UI/JoinServerMenu/VBoxContainer/JoinServer" to="UI/JoinServerMenu" method="_on_join_server_pressed"]
