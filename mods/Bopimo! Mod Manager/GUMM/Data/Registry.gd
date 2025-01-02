@@ -60,6 +60,7 @@ class GameData:
 		var load_path: String
 		var active: bool
 		var entry: Dictionary
+		var autoloads: Dictionary
 
 		func load_data(path: String) -> bool:
 			var config_file := ConfigFile.new()
@@ -70,6 +71,12 @@ class GameData:
 			entry.name = config_file.get_value("Godot Mod", "name")
 			entry.description = config_file.get_value("Godot Mod", "description")
 			entry.version = config_file.get_value("Godot Mod", "version")
+
+			#Autoloads
+			if config_file.has_section("autoload"):
+				for autoload in config_file.get_section_keys("autoload"):
+					autoloads[autoload] = config_file.get_value("autoload", autoload)
+
 
 			return true
 
