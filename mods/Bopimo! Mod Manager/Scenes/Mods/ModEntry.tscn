@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://btmccox413xng"]
 
 [ext_resource type="Script" path="user://mods/Bopimo! Mod Manager/Scenes/Mods/ModEntry.gd" id="1_nu3s4"]
-[ext_resource type="Texture2D" uid="uid://cgdl6ls80n328" path="user://mods/Bopimo! Mod Manager/GUMM/Textures/Folder.svg" id="2_oeaff"]
-[ext_resource type="Texture2D" uid="uid://bmn2i4nakuceh" path="user://mods/Bopimo! Mod Manager/GUMM/Textures/Edit.svg" id="3_ehfl0"]
-[ext_resource type="Texture2D" uid="uid://csvx51bvvwu3p" path="user://mods/Bopimo! Mod Manager/GUMM/Textures/Remove.svg" id="4_lc07v"]
+[ext_resource type="Texture2D" uid="uid://cgdl6ls80n328" path="user://mods/Bopimo! Mod Manager/GUMM/Textures/Folder.tres" id="2_oeaff"]
+[ext_resource type="Texture2D" uid="uid://bmn2i4nakuceh" path="user://mods/Bopimo! Mod Manager/GUMM/Textures/Edit.tres" id="3_ehfl0"]
+[ext_resource type="Texture2D" uid="uid://csvx51bvvwu3p" path="user://mods/Bopimo! Mod Manager/GUMM/Textures/Remove.tres" id="4_lc07v"]
 
 [node name="ModEntry" type="PanelContainer"]
 offset_right = 330.0
