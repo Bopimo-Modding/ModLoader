@@ -7,7 +7,7 @@ func _ready() -> void:
 	level.load_level_from_file(bop_file_path)
 	
 	# Sets labels of version information for the client as well as godot
-	$UI/Version.text = Bopimo.GAME_VERSION
+	$UI/Version.text =  "%s | Modloader %s" % [Bopimo.GAME_VERSION, ProjectSettings.get_setting_with_override("modloader/version_string")]
 	$UI/Godot.text = Bopimo.godot_info
 	$UI/BuildInfo.text = Debug.get_builder_information_string()
 
