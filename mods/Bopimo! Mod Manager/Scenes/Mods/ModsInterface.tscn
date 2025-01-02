@@ -205,47 +205,23 @@ offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "[outline_size=11][font_size=18][wave amp=45.0 freq=3.5.0 connected=1][color=purple]Bopimo![/color][/wave][/font_size][/outline_size]
-Copyright 2024 Bopimo! LLC. All rights reserved. (Whatever that means.)
+text = "[outline_size=11][font_size=18][wave amp=45.0 freq=3.5.0 connected=1][color=red]Bopimo! Mod Loader[/color][/wave][/font_size][/outline_size]
+
 Thank you to:
-[url={PREFIX}/users/Akyplaygame]Aky[/url] for Serbian translations!
-[url={PREFIX}/users/Owner]Owner[/url] for Polish translations!
-[url={PREFIX}/users/TheZipCreator]TheZipCreator[/url] for toki pona translations!
-[url={PREFIX}/users/Velvet]Velvet[/url] for Romanian translations!
-(These languages will be selectable in a future update.)
+TODO.
 
 [outline_size=15][font_size=25][rainbow freq=0.1 sat=1 val=1]Licenses[/rainbow][/font_size][/outline_size]
-[outline_size=11][font_size=18][color=478CBF]Godot Engine:[/color][/font_size][/outline_size]
-This game uses [url=https://godotengine.org/]Godot Engine[/url], available under the following license:
+[outline_size=11][font_size=18][color=478CBF]Godot Universal Mod Loader:[/color][/font_size][/outline_size]
+This is a fork of the [url=https://github.com/KoBeWi/Godot-Universal-Mod-Manager]Godot Universal Mod Loader[/url] which is available under the following license:
 
-Copyright (c) 2014-present Godot Engine contributors. Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-[color=06435E][outline_size=11][font_size=18]FreeType:[/font_size][/outline_size][/color]
-Portions of this software are copyright © 2023 The FreeType Project ([url]www.freetype.org[/url]). All rights reserved.
-
-[color=60B85D][outline_size=11][font_size=18]ENet:[/font_size][/outline_size][/color]
-Copyright (c) 2002-2020 Lee Salzman
+Copyright (c) 2023 Tomek
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-[outline_size=11][font_size=18][color=0CB2DD]mbed TLS:[/color][/font_size][/outline_size]
-Copyright The Mbed TLS Contributors
-
-Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-[url]http://www.apache.org/licenses/LICENSE-2.0[/url]
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
+"
 
 [node name="VersionLabel" type="Label" parent="Control/Control"]
 unique_name_in_owner = true

@@ -75,7 +75,7 @@ class GameData:
 			#Autoloads
 			if config_file.has_section("autoload"):
 				for autoload in config_file.get_section_keys("autoload"):
-					autoloads[autoload] = config_file.get_value("autoload", autoload)
+					autoloads[autoload] = config_file.get_value("autoload", autoload).replace("mod://",path+"/")
 
 
 			return true
