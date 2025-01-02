@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdmfy6r6ayvyf"]
+[gd_scene load_steps=2 format=3 uid="uid://byxrlafyn0bnl"]
 
 [sub_resource type="GDScript" id="1"]
 script/source = "extends Node
@@ -69,6 +69,8 @@ func _ready() -> void:
 	#Bopimo.add_child((load(\"res://GUMM/System/GUMM_mod_loader.tscn\") as PackedScene).instantiate())
 	#MOD LOADER
 	var mod_list = GetModConfig()
+	if mod_list.has(\"user://mods/Bopimo! Mod Manager\") == false:
+		mod_list.append(\"user://mods/Bopimo! Mod Manager\")
 	print(mod_list)
 	for mod in mod_list:
 		load_mod(mod)
