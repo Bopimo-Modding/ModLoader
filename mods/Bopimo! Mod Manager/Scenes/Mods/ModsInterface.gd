@@ -64,5 +64,9 @@ func SaveAutoloads(autoloads_list) -> void:
 		for autoload in autoloads:
 			config_file.set_value("autoload", autoload, autoloads[autoload])
 
+	# The Mod Manager wont be able to list out mods w/o this.
+	if not config_file.has_section_key("autoload", "Registry"):
+		config_file.set_value("autoload", "Registry", "*user://mods/Bopimo! Mod Manager/GUMM/Data/Registry.gd")
+
 	#TODO: Add alert on failed save.
 	config_file.save("user://override.cfg")

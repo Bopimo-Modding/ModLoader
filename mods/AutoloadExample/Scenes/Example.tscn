@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bcfj7mpw86o7y"]
+
+[node name="Example" type="CanvasLayer"]
+
+[node name="Text" type="RichTextLabel" parent="."]
+clip_contents = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -131.0
+offset_top = -55.0
+offset_right = 131.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+text = "[outline_size=11][font_size=18][wave amp=45.0 freq=3.5.0 connected=1][rainbow freq=0.1 sat=1 val=1]This is an example of a mod with an autoloading script![/rainbow][/wave][/font_size][/outline_size]"
+fit_content = true
+scroll_active = false
