@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b70erqmvju2v5" path="res://Client/Assets/Textures/Logo/Logo.png" id="3_0vdm0"]
 [ext_resource type="PackedScene" uid="uid://m3nsigds76w8" path="res://Client/Scenes/Settings/SettingsInterface.tscn" id="5_86bwy"]
 [ext_resource type="Texture2D" uid="uid://dypdp7cqtfocx" path="res://Bopimo/Client/Resources/Imported/Texture/Texture2D/CompressedTexture2D/GUI/Icons.png" id="5_erwug"]
-[ext_resource type="PackedScene" uid="uid://dlasfh5engwnv" path="user://mods/Bopimo! Mod Manager/Scenes/Mods/ModsInterface.tscn" id="5_nrulp"]
+[ext_resource type="PackedScene" path="user://mods/Bopimo! Mod Manager/Scenes/Mods/ModsInterface.tscn" id="5_nrulp"]
 [ext_resource type="Script" path="res://Client/Scripts/GUI/Singleplayer/JoinServerMenu.gd" id="6_1xkiq"]
 [ext_resource type="Texture2D" uid="uid://bibbaa84otgjg" path="res://Client/Assets/Textures/GUI/X.png" id="7_v1oif"]
 
