@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://byxrlafyn0bnl"]
+[gd_scene load_steps=2 format=3 uid="uid://d1vs8r25guhpb"]
 
 [sub_resource type="GDScript" id="1"]
 script/source = "extends Node
@@ -76,6 +76,7 @@ func _ready() -> void:
 		load_mod(mod)
 	
 	get_tree().set_meta(\"GUMM_mods\", loaded_mods)
+
 
 	# Arguments that aren't specific to client or server
 	for arg in arguments.keys():
@@ -184,6 +185,7 @@ func create_server_manager_communicator() -> void:
 	get_tree().root.add_child(new_node)
 	Network.server_manager_communicator = new_node
 
+# Mod Loader
 func load_mod(mod_path: String):
 	var mod_cfg := ConfigFile.new()
 	mod_cfg.load(mod_path.path_join(\"mod.cfg\"))
