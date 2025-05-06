@@ -76,23 +76,35 @@ text = "Description"
 autowrap_mode = 2
 
 [node name="Padding" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
 layout_mode = 2
 
 [node name="Padding2" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
+
+[node name="Padding4" type="Control" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
 
 [node name="OpenFolder" type="Button" parent="HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Open Folder"
 icon = ExtResource("2_oeaff")
+
+[node name="Padding2" type="Control" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
 
 [node name="Edit" type="Button" parent="HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
@@ -101,6 +113,10 @@ tooltip_text = "Edit"
 disabled = true
 icon = ExtResource("3_ehfl0")
 
+[node name="Padding3" type="Control" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
 [node name="Remove" type="Button" parent="HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -108,7 +124,12 @@ tooltip_text = "Delete"
 disabled = true
 icon = ExtResource("4_lc07v")
 
+[node name="Padding5" type="Control" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
 [node name="Padding3" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 
 [node name="FileDialog" type="FileDialog" parent="."]
