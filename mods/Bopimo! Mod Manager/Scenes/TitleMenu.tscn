@@ -1,12 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://gtlu2x8wkjc8"]
+[gd_scene load_steps=11 format=3 uid="uid://gtlu2x8wkjc8"]
 
-[ext_resource type="Script" path="res://Client/Scripts/GUI/Singleplayer/TitleMenu.gd" id="1_7ixex"]
-[ext_resource type="Theme" uid="uid://beuomq0jraf8m" path="res://addons/BopimoTheme/Resources/BopimoTheme.tres" id="2_itea1"]
+[ext_resource type="Script" uid="uid://c8wknx12ekh3a" path="res://Client/Scripts/GUI/Singleplayer/TitleMenu.gd" id="1_7ixex"]
+[ext_resource type="Theme" uid="uid://beuomq0jraf8m" path="res://addons/BopimoTheme/Resources/BopimoThemeOld.tres" id="2_itea1"]
 [ext_resource type="Texture2D" uid="uid://b70erqmvju2v5" path="res://Client/Assets/Textures/Logo/Logo.png" id="3_0vdm0"]
-[ext_resource type="PackedScene" uid="uid://m3nsigds76w8" path="res://Client/Scenes/Settings/SettingsInterface.tscn" id="5_86bwy"]
 [ext_resource type="Texture2D" uid="uid://dypdp7cqtfocx" path="res://Bopimo/Client/Resources/Imported/Texture/Texture2D/CompressedTexture2D/GUI/Icons.png" id="5_erwug"]
 [ext_resource type="PackedScene" path="user://mods/Bopimo! Mod Manager/Scenes/Mods/ModsInterface.tscn" id="5_nrulp"]
-[ext_resource type="Script" path="res://Client/Scripts/GUI/Singleplayer/JoinServerMenu.gd" id="6_1xkiq"]
+[ext_resource type="Script" uid="uid://cwvm3lg2cm701" path="res://Client/Scripts/GUI/Singleplayer/JoinServerMenu.gd" id="6_1xkiq"]
 [ext_resource type="Texture2D" uid="uid://bibbaa84otgjg" path="res://Client/Assets/Textures/GUI/X.png" id="7_v1oif"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1hjxg"]
@@ -79,13 +78,13 @@ margin = Rect2(2, 2, 4, 4)
 
 [node name="TitleMenu" type="Node3D"]
 script = ExtResource("1_7ixex")
-bop_file_path = "res://Client/Resources/Custom/BopFiles/Bases/WinterTower/WinterTower.bopjson"
+bop_file_path = "res://Client/Resources/Custom/BopFiles/1.1.0titlemenu.bop"
 
 [node name="CamPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
 
 [node name="TitleCam" type="Camera3D" parent="CamPivot"]
-transform = Transform3D(-4.37114e-08, -0.243615, 0.969872, 0, 0.969872, 0.243615, -1, 1.06488e-08, -4.23945e-08, 0, 5, 0)
+transform = Transform3D(-4.37114e-08, -0.243615, 0.969872, 0, 0.969872, 0.243615, -1, 1.06488e-08, -4.23945e-08, 0, 80, 0)
 current = true
 
 [node name="UI" type="Control" parent="."]
@@ -105,9 +104,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -351.0
-offset_top = -242.0
+offset_top = -218.0
 offset_right = 351.0
-offset_bottom = 242.0
+offset_bottom = 218.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 22
@@ -188,9 +187,6 @@ offset_bottom = 34.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "Godot"
-
-[node name="SettingsInterface" parent="UI" instance=ExtResource("5_86bwy")]
-visible = false
 
 [node name="ModsInterface" parent="UI" instance=ExtResource("5_nrulp")]
 visible = false
