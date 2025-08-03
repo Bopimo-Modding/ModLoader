@@ -1,8 +1,14 @@
-[gd_scene format=3 uid="uid://btmccox413xng"]
+[gd_scene load_steps=5 format=3 uid="uid://btmccox413xng"]
+
+[ext_resource type="Script" path="user://mods/Bopimo! Mod Manager/Scenes/Mods/ModEntry.gd" id="1_nu3s4"]
+[ext_resource type="Texture2D" path="user://mods/Bopimo! Mod Manager/GUMM/Textures/Folder.tres" id="2_oeaff"]
+[ext_resource type="Texture2D" path="user://mods/Bopimo! Mod Manager/GUMM/Textures/Edit.tres" id="3_ehfl0"]
+[ext_resource type="Texture2D" path="user://mods/Bopimo! Mod Manager/GUMM/Textures/Remove.tres" id="4_lc07v"]
 
 [node name="ModEntry" type="PanelContainer"]
 offset_right = 330.0
 offset_bottom = 96.0
+script = ExtResource("1_nu3s4")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -95,6 +101,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Open Folder"
+icon = ExtResource("2_oeaff")
 
 [node name="Padding2" type="Control" parent="HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 8)
@@ -105,6 +112,7 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Edit"
 disabled = true
+icon = ExtResource("3_ehfl0")
 
 [node name="Padding3" type="Control" parent="HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 8)
@@ -115,6 +123,7 @@ unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Delete"
 disabled = true
+icon = ExtResource("4_lc07v")
 
 [node name="Padding5" type="Control" parent="HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 8)
