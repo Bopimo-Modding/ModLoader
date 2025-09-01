@@ -68,11 +68,13 @@ size_flags_horizontal = 8
 size_flags_vertical = 3
 text = "Active"
 
-[node name="Description" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+bbcode_enabled = true
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Description"
+fit_content = true
 autowrap_mode = 2
 
 [node name="Padding" type="Control" parent="HBoxContainer"]
